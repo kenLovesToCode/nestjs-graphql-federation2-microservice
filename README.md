@@ -13,8 +13,6 @@ $ nest g resource (users, posts)
 
 $ yarn add @apollo/gateway @apollo/subgraph @nestjs/apollo @nestjs/graphql graphql apollo-server-express
 
-# create global gateway/auth.context for authorization
-
 ```
 
 ## Running the app (users - 4300)
@@ -121,4 +119,17 @@ query{
     }
   }
 }
+```
+
+## With authorization
+
+```bash
+# create global gateway/auth.context for authorization
+# update gateway/app.module
+# Test 1: on gql query/mutation, add HTTP HEADERS -> {"Authorization": "001"}
+
+# Share context between services
+# 1. Update gateway/app.module
+# 2. Create current-user decorator
+# 3. Use decorator on posts/post.resolver to get the current user
 ```

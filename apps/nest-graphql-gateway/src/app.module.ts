@@ -11,8 +11,8 @@ import { authContext } from './auth.context';
     GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
       driver: ApolloGatewayDriver,
       server: {
-        // context: authContext
-        cors: true
+        context: authContext
+        // cors: true
       },
       gateway: {
         supergraphSdl: new IntrospectAndCompose({
@@ -23,18 +23,19 @@ import { authContext } from './auth.context';
             },
             { name: 'posts', url: 'http://localhost:4301/graphql' }
           ]
-        })
-        // buildService({ url }) {
-        //   return new RemoteGraphQLDataSource({
-        //     url,
-        //     willSendRequest({ request, context }) {
-        //       request.http.headers.set(
-        //         'user',
-        //         context.user ? JSON.stringify(context.user) : null
-        //       );
-        //     }
-        //   });
-        // }
+        }),
+        buildService({ url }) {
+          // Allow sharing user context between services
+          return new RemoteGraphQLDataSource({
+            url,
+            willSendRequest({ request, context }) {
+              request.http.headers.set(
+                'user',
+                context.user ? JSON.stringify(context.user) : null
+              );
+            }
+          });
+        }
       }
     })
   ],
