@@ -6,9 +6,9 @@ import { Post } from './entities/post.entity';
 @Injectable()
 export class PostsService {
   private readonly posts: Post[] = [
-    { id: '001', authorId: '001', body: 'First Post' },
-    { id: '002', authorId: '002', body: 'Second Post' },
-    { id: '003', authorId: '001', body: 'Third Post' },
+    { id: '001', authorId: '1', body: 'First Post' },
+    { id: '002', authorId: '2', body: 'Second Post' },
+    { id: '003', authorId: '3', body: 'Third Post' },
   ];
 
   create(createPostInput: CreatePostInput) {

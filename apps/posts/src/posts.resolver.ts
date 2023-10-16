@@ -29,10 +29,26 @@ export class PostsResolver {
     return this.postsService.findAll();
   }
 
+  // query{
+  //   posts{
+  //     id
+  //     body
+  //     authorId
+  //   }
+  // }
+
   @Query(() => Post, { name: 'post' })
   findOne(@Args('id') id: string) {
     return this.postsService.findOne(id);
   }
+
+  // query{
+  //   post(id: "001"){
+  //     id
+  //     body
+  //     authorId
+  //   }
+  // }
 
   @ResolveField(() => User)
   user(@Parent() post: Post): any {
