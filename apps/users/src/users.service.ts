@@ -8,14 +8,15 @@ export class UsersService {
     {
       id: '001',
       email: 'kenlovestocode@gmail.com',
-      password: 'supersecurepassword',
+      password: 'supersecurepassword'
     },
     {
       id: '002',
       email: 'kenlovestoplay@gmail.com',
-      password: 'supersecurepassword',
-    },
+      password: 'supersecurepassword'
+    }
   ];
+
   create(createUserInput: CreateUserInput) {
     this.users.push(createUserInput);
     return createUserInput;
@@ -26,7 +27,7 @@ export class UsersService {
   }
 
   findOne(id: string) {
-    return this.users.find((user) => user.id === id);
+    return this.users.find(user => user.id === id);
   }
 
   // update(id: number, updateUserInput: UpdateUserInput) {
